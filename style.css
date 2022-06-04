@@ -5,7 +5,7 @@
 }
 
 body {
-    background: linear-gradient(120deg, #f7ce49, #fdb63b);
+    background: linear-gradient(170deg, #f7ce49, #fcaf2b);
     font-family: 'Julius Sans One', sans-serif;
     text-align: center;
 }
@@ -50,6 +50,10 @@ td.saveBtn {
     padding: 20px 10px 10px 10px;
     border: solid rgb(92, 92, 92) px;
     margin: 0px; 
+}
+td.saveBtn:hover {
+    background-color: #589cbd;
+    
 }
 
 textarea {

@@ -53,9 +53,20 @@ displayTimeblocks = (text, data) => {
 
         // Appends the rows to the table body
         main.append(row);    
-        checkTime(numData, textArea);   
+        checkTime(numData, textArea); 
+        saveTasks();  
     }
 }
+
+saveTasks = () => {
+    $(".saveBtn").on("click", function () {
+        var whichBtn = $(this).parent().attr("data-type");
+        console.log("ive been clicked" + whichBtn);
+    })
+
+
+}
+
 
 checkTime = (numData, textArea) => {
     if (currentHour === numData ) {
@@ -66,5 +77,5 @@ checkTime = (numData, textArea) => {
         textArea.addClass("future");
     }
 }
-console.log(currentHour);
+
 displayTimeblocks(hours[0],hours[1]);
