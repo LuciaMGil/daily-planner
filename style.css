@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(120deg, #f7ce49, #fdb63b);
+    font-family: 'Julius Sans One', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 45px;
+    font-weight: 600;
+    margin-top: 45px;
+    padding-top: 15px;
+    
+}
+
+header {
+    margin: 0px 400px 0px 400px;
+    background-color: rgb(253, 253, 253);
+}
+
+.past {
+    background-color: #d3d3d3;
+}
+
+.now {
+    background-color: #ff6961;
+}
+
+.future {
+    background-color: blue;
+}
+
