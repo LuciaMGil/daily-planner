@@ -46,9 +46,10 @@ td.description {
 
 td.saveBtn {
     background-color: #77bbdd;
-    width: 50px;
     color: white;
-    padding: 5px 10px 5px 10px;
+    padding: 20px 10px 10px 10px;
+    border: solid rgb(92, 92, 92) px;
+    margin: 0px; 
 }
 
 textarea {

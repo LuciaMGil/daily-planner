@@ -1,16 +1,21 @@
 
 // Create variable for the current time using moment.js
 var today = moment();
+
+// Stores the current time
+var currentHour = moment().hour();
 var hours = [
     hourText = ["9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"],
     hourNum = [9, 10, 11, 12, 13, 14, 15, 16, 17]
 ];
+
+
 // Format and append current date to header
 $("#currentDate").text(moment().format("dddd MMMM Do"));
 
 // Display timeblocks 
 
-function displayTimeblocks (text) {
+displayTimeblocks = (text, data) => {
     // Access the table body
     var main = $("tbody");
 
@@ -25,6 +30,10 @@ function displayTimeblocks (text) {
         // Loops through the array and adds text to each row of the first column. ex: 9AM
         timeCol.text(text[i]);
 
+        // Loops through data and assigns the data type to each number
+        row.attr("data-type", data[i]);
+        var numData = parseInt(row.attr("data-type"));
+
         // Creates the second column where the text area will appear
         var textCol = $("<td class='description'>");
 
@@ -34,7 +43,7 @@ function displayTimeblocks (text) {
         // Appends the text area to the text column
         textCol.append(textArea);
         // Create a column where the save button will be
-        var saveBtn = $("<td class='saveBtn btn'>");
+        var saveBtn = $("<td class='saveBtn'>");
 
         // Appends floppy disk icon to the save button
         saveBtn.append($("<i class='fa-solid fa-floppy-disk'>"));
@@ -43,8 +52,19 @@ function displayTimeblocks (text) {
         row.append(timeCol,textCol,saveBtn);
 
         // Appends the rows to the table body
-        main.append(row);       
+        main.append(row);    
+        checkTime(numData, textArea);   
     }
 }
 
-displayTimeblocks(hours[0]);
+checkTime = (numData, textArea) => {
+    if (currentHour === numData ) {
+        textArea.addClass("now");
+    } else if (currentHour > numData) {
+        textArea.addClass("past");        
+    } else {
+        textArea.addClass("future");
+    }
+}
+console.log(currentHour);
+displayTimeblocks(hours[0],hours[1]);
