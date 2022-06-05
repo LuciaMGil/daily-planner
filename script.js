@@ -65,10 +65,8 @@ saveTextareaValue = () => {
     $(".saveBtn").on("click", function () {
         // When the button is clicked, it will grab the time data from the selected text area and store it
         var currentTimeData = $(this).parent().attr("data-type");
-        console.log(currentTimeData);
         // Indicates the text we selected by using the textarea class plus time data
         var clickedTextarea = $(".textarea" + currentTimeData);
-        console.log(clickedTextarea);
         // Grabs the data type from the button we clicked that will equal to the index for our empty text array
         var arrayIndex = $(this).attr("data-type");
          
@@ -97,11 +95,14 @@ checkTime = (numData, textArea) => {
     }
 }
 
+// Clears storage and reloads page on click
+clearTasks = () => {
+    $("#clear-btn").on("click", function () {
+        localStorage.clear();
+        location.reload();
+    })
+}
+
 displayTimeblocks(hours[0],hours[1]);
 saveTextareaValue();
-
-// $(".saveBtn").on("click", function () {
-//     var whichBtn = $(this).parent().attr("data-type");
-//     console.log("ive been clicked" + whichBtn);
-// })
-// // 
+clearTasks();
