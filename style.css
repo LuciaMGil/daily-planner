@@ -6,7 +6,7 @@
 
 body {
     background: linear-gradient(170deg, #f7ce49, #fcaf2b);
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
 }
 
@@ -61,6 +61,8 @@ textarea {
     width: 100%;
     border: none;
     resize: none;
+    overflow: auto;
+    vertical-align: top;
 }
 .container {
     width: 712px;

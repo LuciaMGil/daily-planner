@@ -9,6 +9,8 @@ var hours = [
     hourNum = [9, 10, 11, 12, 13, 14, 15, 16, 17]
 ];
 
+// Empty array for storing text from textarea values
+var savedText = ["", "", "", "", "", "", "", "", ""];
 
 // Format and append current date to header
 $("#currentDate").text(moment().format("dddd MMMM Do"));
@@ -38,12 +40,12 @@ displayTimeblocks = (text, data) => {
         var textCol = $("<td class='description'>");
 
         // Creates the text area where they can input their tasks
-        var textArea = $("<textarea class='textarea d-flex flex-column flex-grow-1' rows='3' cols='30'>");
+        var textArea = $("<textarea class='textarea" + data[i] + "'d-flex flex-column flex-grow-1' rows='3' cols='30'>");
 
         // Appends the text area to the text column
         textCol.append(textArea);
         // Create a column where the save button will be
-        var saveBtn = $("<td class='saveBtn'>");
+        var saveBtn = $("<td class='saveBtn' data-type=" + i +">");
 
         // Appends floppy disk icon to the save button
         saveBtn.append($("<i class='fa-solid fa-floppy-disk'>"));
@@ -57,17 +59,34 @@ displayTimeblocks = (text, data) => {
         saveTasks();  
     }
 }
+// Saves input from text area to corresponding row and column
+saveTextareaValue = () => { 
 
-saveTasks = () => {
     $(".saveBtn").on("click", function () {
-        var whichBtn = $(this).parent().attr("data-type");
-        console.log("ive been clicked" + whichBtn);
-    })
+        // When the button is clicked, it will grab the time data from the selected text area and store it
+        var currentTimeData = $(this).parent().attr("data-type");
+        console.log(currentTimeData);
+        // Indicates the text we selected by using the textarea class plus time data
+        var clickedTextarea = $(".textarea" + currentTimeData);
+        console.log(clickedTextarea);
+        // Grabs the data type from the button we clicked that will equal to the index for our empty text array
+        var arrayIndex = $(this).attr("data-type");
+         
+        //Saves the current textarea  value to the corresponding spot in the empty array
+        savedText[arrayIndex] = clickedTextarea.val();
 
+        //Stores text/tasks to local storage
+        saveTasks();
 
+})};
+// Stores tasks in local storage
+saveTasks = () => {
+    localStorage.setItem("Tasks", JSON.stringify(savedText));
 }
 
 
+
+// Checks the time from moment.js and data, then changes class based on if it is past, present or future
 checkTime = (numData, textArea) => {
     if (currentHour === numData ) {
         textArea.addClass("now");
@@ -79,3 +98,10 @@ checkTime = (numData, textArea) => {
 }
 
 displayTimeblocks(hours[0],hours[1]);
+saveTextareaValue();
+
+// $(".saveBtn").on("click", function () {
+//     var whichBtn = $(this).parent().attr("data-type");
+//     console.log("ive been clicked" + whichBtn);
+// })
+// // 
